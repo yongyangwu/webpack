@@ -3,10 +3,10 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');//移除旧的项目文
 var ExtractTextPlugin = require("extract-text-webpack-plugin");//提取css
 
 module.exports = {
-    entry:'./src/js/src.js',
+    entry:'./src/js/app.js',
     output:{
         path:__dirname +'/dist',
-        filename:'./js/bundle.js'
+        filename:'bundle.js'
     },
     module:{
        rules:[
@@ -22,16 +22,15 @@ module.exports = {
                loader: 'url-loader',
                options: {
                    limit: 10000,
-                   name: '[name].[ext]',
-                   outputPath: 'images/'
+                   name: '[name].[ext]'
                }
            }
        ]
     },
     plugins: [
-        // new CleanWebpackPlugin(['./dist']),
+        new CleanWebpackPlugin(['./dist']),
         new ExtractTextPlugin({
-            filename:'./css/[name].css'
+            filename:'[name].css'
         }),
         new HtmlWebpackPlugin({
             template:'./src/index.html'
